@@ -144,9 +144,7 @@ module Beway
         raise AuctionParseError, "Couldn't find ended header" unless td
         node = td.next_sibling
       else
-        th = @doc.at_xpath("//th[contains(text(),'Time left:')]")
-        raise AuctionParseError, "Couldn't find Time Left header" unless th
-        node = th.parent.at_css('td')
+        node = @doc.at_xpath('//span[@id="vi-cdown_timeLeft"]')
       end
 
       raise AuctionParseError, "Couldn't find Time node" unless node
