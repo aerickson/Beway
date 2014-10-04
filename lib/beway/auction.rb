@@ -131,7 +131,7 @@ module Beway
 
     # parsming method, returns boolean
     def has_bid_button?
-      place_bid_button = @doc.at_xpath('//form//input[@value="Place bid"]')
+      place_bid_button = @doc.at_xpath('//form//input[@id = "MaxBidId"]')
       return (place_bid_button.nil?) ? false : true
     end
 
