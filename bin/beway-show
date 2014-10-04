@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+#
+require_relative '../lib/beway.rb'
+
+class BewayShow
+
+  include Beway
+
+  def display_auction(a)
+      puts "URL:            #{a.url}"
+      puts "Description:    #{a.description}"
+      puts "Auction Number: #{a.auction_number}"
+      puts "Current Bid:    #{a.current_bid}"
+      puts "Shipping:       US #{a.shipping}"
+      puts "Min Bid:        #{a.min_bid || '-- bidding closed --'}"
+      puts "Total Cost:     US $#{a.current_total_cost}"
+      puts "Time Left:      #{a.time_left || '-- bidding closed --'}"
+      puts "End Time:       #{a.end_time}"
+  end
+
+  def run(url)
+    auction = Auction.new(url)
+    ebay = EbayData.instance
+    puts "eBay Time: #{ebay.time}"
+    puts
+    display_auction auction
+  end
+
+end
+
+if ARGV.length != 1
+  puts "ERROR: you must specify a single ebay auction url"
+  exit 1
+end
+
+bs = BewayShow.new
+bs.run ARGV[0]
