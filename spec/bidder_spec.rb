@@ -19,7 +19,7 @@ describe Beway::Bidder do
 
   describe "with invalid login credentials" do
     it "should fail to login" do
-      bidder = Beway::Bidder.new('bogus', 'user')
+      bidder = Beway::Bidder.new('test', 'user')
       bidder.logged_in.should be_false
       bidder.login
       bidder.logged_in.should be_false
