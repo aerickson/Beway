@@ -39,22 +39,7 @@ module Beway
 
     # parsing method, returns a string
     def current_bid
-      # list of ways to get the bid.
-      xpaths = [
-        "//th[contains(text(),'Current bid:')]",
-        "//div[contains(text(),'Starting bid:')]",
-        "//th[contains(text(),'Price:')]",
-        "//td[contains(text(),'Starting bid:')]",
-        "//td[contains(text(),'Winning bid:')]",
-      ]
-
-      bid_node = xpaths.reduce(nil) do |node, xpath|
-        if node.nil?
-          node = @doc.at_xpath(xpath)
-          node = node.next_sibling unless node.nil?
-        end
-        node
-      end
+      bid_node = @doc.at_xpath('//span[@id="prcIsum_bidPrice"]')
 
       raise AuctionParseError, "Couldn't find current/starting bid header in document" if bid_node.nil?
       bid_text = node_text(bid_node)
