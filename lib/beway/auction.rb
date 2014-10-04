@@ -42,7 +42,7 @@ module Beway
       # list of ways to get the bid.
       xpaths = [
         "//th[contains(text(),'Current bid:')]",
-        "//th[contains(text(),'Starting bid:')]",
+        "//div[contains(text(),'Starting bid:')]",
         "//th[contains(text(),'Price:')]",
         "//td[contains(text(),'Starting bid:')]",
         "//td[contains(text(),'Winning bid:')]",
