@@ -51,7 +51,9 @@ module Beway
     def description
       desc = @doc.at_css('h1')
       raise AuctionParseError, "Couldn't find description in document" if desc.nil?
-      desc.inner_text.strip
+      desc.children.last
+    end
+
     end
 
     # parsing method, returns a string
