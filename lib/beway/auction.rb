@@ -100,13 +100,7 @@ module Beway
 
     # parsing method, returns a Time object
     def end_time
-      text = node_text(time_node)
-      md = text.match(/\(([^)]*)\)/)
-      if md
-        time_str = md[1]
-      else
-        time_str = text
-      end
+      time_str = @doc.at_xpath('//span[@class="vi-tm-left"]').children.text.strip
       raise AuctionParseError unless time_str
       Time.parse(time_str)
     end
