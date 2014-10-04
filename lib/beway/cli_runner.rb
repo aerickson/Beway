@@ -118,6 +118,7 @@ module Beway
       puts "Current Bid:    #{a.current_bid}"
       puts "Min Bid:        #{a.min_bid || '-- bidding closed --'}"
       puts "Time Left:      #{a.time_left || '-- bidding closed --'}"
+      puts "Shipping:       #{a.shipping}"
       puts "End Time:       #{a.end_time}"
     end
 

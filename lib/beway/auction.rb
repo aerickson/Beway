@@ -54,6 +54,8 @@ module Beway
       desc.children.last
     end
 
+    def shipping
+      shipping = @doc.at_xpath('//span[@id="fshippingCost"]/span').text
     end
 
     # parsing method, returns a string
