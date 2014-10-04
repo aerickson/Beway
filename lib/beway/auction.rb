@@ -102,7 +102,7 @@ module Beway
     def min_bid
       return nil if complete?
 
-      min_bid_node = @doc.at_css('form.vi-is1-s4-eu span.vi-c-fsmt')
+      min_bid_node = @doc.at_xpath('//div[contains(@class,"bid-note")]')
       raise AuctionParseError, "Couldn't find minimum bid in document" unless min_bid_node
       match_data = min_bid_node.inner_text.match(/Enter ([^)]*) or more/)
       raise AuctionParseError, "Min Bid data not in expected format. Got: #{min_bid_node.inner_text}" if match_data.nil?
