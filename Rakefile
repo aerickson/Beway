@@ -1,5 +1,5 @@
-require "rake/rdoctask"
-require "rake/gempackagetask"
+require "rdoc/task"
+require "rubygems/package_task"
 require "rspec/core/rake_task"
 
 task :default => [:spec]
@@ -13,7 +13,7 @@ Rake::RDocTask.new do |rd|
 end
 
 gemspec = Gem::Specification.load "beway.gemspec"
-Rake::GemPackageTask.new(gemspec) do |pkg|
+Gem::PackageTask.new(gemspec) do |pkg|
   pkg.need_zip = true
   pkg.need_tar = true
 end
