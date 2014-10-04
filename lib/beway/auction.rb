@@ -1,6 +1,8 @@
 require 'nokogiri'
 require 'open-uri'
 
+require 'pry'
+
 module Beway
   class AuctionParseError < StandardError; end;
   class InvalidUrlError < StandardError; end;
@@ -35,6 +37,17 @@ module Beway
     def refresh_doc
       @doc = Nokogiri::HTML(open(@url))
       @last_updated = Time.now
+    end
+
+    # returns a rounded float
+    def current_total_cost
+      (cost_to_f(current_bid) + cost_to_f(shipping)).round(2)
+    end
+
+    # takes cost/currency string (e.g. "US $9.99"), returns float
+    # TODO: no international support
+    def cost_to_f(string)
+      string.gsub("US","").gsub("$", "").to_f
     end
 
     # parsing method, returns a string
